@@ -9,8 +9,13 @@ import '../storage/storage_service.dart';
 
 class DiagnosticsScreen extends StatefulWidget {
   final StorageService storageService;
+  final VoidCallback? onMenuPressed;
 
-  const DiagnosticsScreen({super.key, required this.storageService});
+  const DiagnosticsScreen({
+    super.key,
+    required this.storageService,
+    this.onMenuPressed,
+  });
 
   @override
   State<DiagnosticsScreen> createState() => _DiagnosticsScreenState();
@@ -79,6 +84,13 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: widget.onMenuPressed ??
+              () {
+                Scaffold.of(context).openDrawer();
+              },
+        ),
         title: const Text('Database Diagnostics'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),

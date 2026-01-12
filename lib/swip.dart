@@ -13,18 +13,23 @@ export 'src/consent_manager.dart';
 export 'src/storage/storage_schema.dart';
 
 // Legacy exports for backwards compatibility
-export 'src/manager.dart' show SWIPManager;
 export 'src/synheart_wear_adapter.dart';
 
-// Re-export swip_core types
-export 'package:swip_core/swip.dart'
+// Re-export swip_core types (now integrated locally)
+export 'src/core/swip_core.dart'
     show
         SwipScoreResult,
         PhysiologicalBaseline,
         SwipConfig,
         SwipEngine,
         SwipEngineFactory,
-        SwipScoreComputation;
+        SwipScoreComputation,
+        EmotionSnapshot,
+        AdaptiveBaseline,
+        AdaptiveBaselineFactory,
+        ArtifactFilter,
+        ArtifactFlags,
+        HrvFeatures;
 export 'package:synheart_emotion/synheart_emotion.dart'
     show EmotionEngine, EmotionConfig, EmotionResult;
 export 'package:synheart_wear/synheart_wear.dart'
@@ -34,5 +39,3 @@ export 'package:synheart_wear/synheart_wear.dart'
 export 'src/ml/feature_extractor.dart';
 export 'src/ml/svm_predictor.dart';
 export 'src/ml/emotion_recognition_model.dart';
-export 'src/ml/emotion_recognition_controller.dart'
-    show EmotionRecognitionController, EmotionRecognitionConfig, EmotionState;
