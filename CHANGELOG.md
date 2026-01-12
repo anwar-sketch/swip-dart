@@ -7,26 +7,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0+7] - 2025-01-09
 
+### Changed
+- **Architecture**: Integrated `swip-core` directly into the SDK
+  - Removed external `swip_core` package dependency
+  - Core implementation now lives in `lib/src/core/` (19 files)
+  - This simplifies dependency management and ensures version consistency
+  - All `swip_core` types are now exported from the main SDK package
+- **Dependencies**: Updated package dependencies
+  - `synheart_wear: ^0.2.2` (was 0.1.2)
+  - `synheart_emotion: ^0.3.0` (was 0.2.0)
+  - Added `flutter_onnxruntime: ^1.5.2` (required for integrated core)
+  - Removed external `swip_core` path dependency
+- **Model Files**: Updated to use nozipmap ONNX model format
+  - Added `ExtraTrees_60_5_nozipmap.onnx` and metadata to SDK assets
+  - Model now uses binary classification (Baseline vs Stress) instead of 3-class
+  - Model ID: `extratrees_chest_ecg_w60s5_binary_v1_0`
+
 ### Fixed
 - **ONNX Inference Error**: Fixed `RangeError (length): Invalid value: Only valid value is 0: 1` error in emotion inference
   - Updated to use `ExtraTrees_60_5_nozipmap.onnx` model (same as synheart-poc-dart)
   - The nozipmap model outputs probabilities directly without ZipMap wrapper, fixing output parsing issues
   - Model ID is now automatically read from loaded model's metadata for consistency
 
-### Changed
-- **Model Files**: Updated to use nozipmap ONNX model format
-  - Added `ExtraTrees_60_5_nozipmap.onnx` and metadata to SDK assets
-  - Model now uses binary classification (Baseline vs Stress) instead of 3-class
-  - Model ID: `extratrees_chest_ecg_w60s5_binary_v1_0`
-
 ### Added
-- **Example App**: Added `SwipController` to example app demonstrating proper SDK integration
+- **Example App**: Complete example app refactoring
+  - Added `SwipController` demonstrating proper SDK integration
+  - New modular UI structure with `HomePage` and `SwipPage`
   - Shows real-time SWIP scores and emotions
   - Includes session management and history
-  - Demonstrates storage integration
+  - Demonstrates storage integration with SQLite
+  - Aligned Android configuration with SDK best practices
 
 ### Improved
 - Model loading now uses model's own metadata for modelId, ensuring consistency
+- Better code organization with integrated core implementation
 
 ## [1.0.0+6] - 2025-01-09
 
